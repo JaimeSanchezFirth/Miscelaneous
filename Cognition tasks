@@ -1,0 +1,14 @@
+import numpy as np
+from sklearn.cluster import KMeans
+
+# Number of succesful publications + clinical studies (numPub)
+numPub = np.array([[5], [5], [3], [4], [1], [1], [1], [1]])
+
+# Apply K-means clustering with K=3. The clusters represent the relevance of the task in FM (3='High', 2='Medium', 1='Low')
+#https://www.iebschool.com/blog/algoritmo-k-means-que-es-y-como-funciona-big-data/
+kmeans = KMeans(n_clusters=3, random_state=0)
+clusters = kmeans.fit_predict(numPub)
+tasks = ['SCWT', 'TMT', 'DS', 'RAVLT', 'N-Back', 'GNGT','d2', '5dt']
+for i, tasks in enumerate(tasks):
+  #Print the different clusters
+    print(f"{tasks} - Cluster {clusters[i] + 1}")
